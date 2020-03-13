@@ -1,0 +1,32 @@
+|msgID|operation|type|timestamp|marketId|outcomeId|name|price|displayed|suspended|
+|121|create|outcome|1579707430630|ce2a664f-857b-45cf-b17c-261918816abd|d11b919f-a141-4457-b259-d71e2fa3cbe9|Yes|11/2|0|1|
+|119|create|outcome|1579707430630|3790f424-d962-458e-9e27-68ce3f16561b|bec7ed6a-c6ad-48a7-bb4c-340ddd51fcd9|\|Wigan\||8/11|0|1|
+|118|create|outcome|1579707430630|3790f424-d962-458e-9e27-68ce3f16561b|2139dd9d-b407-4329-aa5f-395e3e1df05a|Draw|11/4|0|1|
+
+|msgID|operation|type|timestamp|eventId|marketId|name|displayed|suspended|
+|116|create|market|1579707430630|fdf6dd5a-e286-4470-bfab-63e24164d482|3790f424-d962-458e-9e27-68ce3f16561b|Full Time Result|0|1|
+|120|create|market|1579707430630|fdf6dd5a-e286-4470-bfab-63e24164d482|ce2a664f-857b-45cf-b17c-261918816abd|Both Teams To Score|0|1|
+
+|msgID|operation|type|timestamp|eventId|category|subcategory|name|startTime|displayed|suspended|
+|1|create|event|1579707421388|ff6d7af2-3f38-46a3-9600-ee7eb75354d1|Football|Sky Bet League Two|\|Forest Green\| vs \|Notts County\||1579707442001|0|1|
+|39|create|event|1579707424734|ff471a90-5309-4e4a-b3ca-e4c2782f1cd2|Football|Sky Bet League One|\|Plymouth\| vs \|Oxford\||1579707481464|0|1|
+
+
+
+
+updateOptions :Document{{Markets=Document{{$elemMatch=Document{{marketId=7936d6e6-ca78-445e-b7b2-e74882ea66f0, Outcomes.outcomeId=d5350766-b29f-497e-9f20-b596a783fe4c}}}}}}
+updateOptions :Document{{$set=Document{{Markets.$[marketArray].Outcomes.$[outcomeArray]=Document{{marketId=7936d6e6-ca78-445e-b7b2-e74882ea66f0, outcomeId=d5350766-b29f-497e-9f20-b596a783fe4c, name=Norwich, price=1/50, displayed=false, suspended=false}}}}}}
+updateOptions :FindOneAndUpdateOptions{projection=null, sort=null, upsert=false, returnDocument=BEFORE, maxTimeMS=0, bypassDocumentValidation=null, collation=null, arrayFilters=[Document{{marketArray.marketId=7936d6e6-ca78-445e-b7b2-e74882ea66f0}}, Document{{outcomeArray.outcomeId=d5350766-b29f-497e-9f20-b596a783fe4c}}]}
+
+Document{{Markets=Document{{$elemMatch=Document{{marketId=7936d6e6-ca78-445e-b7b2-e74882ea66f0, Outcomes.outcomeId=d5350766-b29f-497e-9f20-b596a783fe4c}}}}}}
+Document{{Markets=Document{{$elemMatch=Document{{marketId=8bc6681a-f4f1-4480-901d-eeac894bcd34, Outcomes.outcomeId=9b4339fd-1130-4b55-95d0-56980db7b9e0}}}}}}
+
+Document{{$set=Document{{Markets.$[marketArray].Outcomes.$[outcomeArray]=Document{{marketId=7936d6e6-ca78-445e-b7b2-e74882ea66f0, outcomeId=d5350766-b29f-497e-9f20-b596a783fe4c, name=Norwich, price=1/50, displayed=false, suspended=false}}}}}}
+Document{{$set=Document{{Markets.$[marketArray].Outcomes.$[outcomeArray]={"marketId":"8bc6681a-f4f1-4480-901d-eeac894bcd34","outcomeId":"9b4339fd-1130-4b55-95d0-56980db7b9e0","name":"No","price":"5/2","displayed":false,"suspended":false}}}}}
+
+1: Full Packet: FullPacket(headerPacket=common.HeaderPacket@54f25b42, messagePacket=common.Outcome@521c67f0)
+2: Search Doc: Document{{Markets=Document{{$elemMatch=Document{{marketId=8bc6681a-f4f1-4480-901d-eeac894bcd34, Outcomes.outcomeId=9b4339fd-1130-4b55-95d0-56980db7b9e0}}}}}}
+> Create JSON String:
+{"marketId":"8bc6681a-f4f1-4480-901d-eeac894bcd34","outcomeId":"9b4339fd-1130-4b55-95d0-56980db7b9e0","name":"No","price":"5/2","displayed":false,"suspended":false}
+3: Set Doc: Document{{$set=Document{{Markets.$[marketArray].Outcomes.$[outcomeArray]={"marketId":"8bc6681a-f4f1-4480-901d-eeac894bcd34","outcomeId":"9b4339fd-1130-4b55-95d0-56980db7b9e0","name":"No","price":"5/2","displayed":false,"suspended":false}}}}}
+4: UpdateOptions: FindOneAndUpdateOptions{projection=null, sort=null, upsert=false, returnDocument=BEFORE, maxTimeMS=0, bypassDocumentValidation=null, collation=null, arrayFilters=[Document{{marketArray.marketId=8bc6681a-f4f1-4480-901d-eeac894bcd34}}, Document{{outcomeArray.outcomeId=9b4339fd-1130-4b55-95d0-56980db7b9e0}}]}

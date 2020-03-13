@@ -1,0 +1,85 @@
+// This files doesnt do anything, just has some of working to update a nested array in Mongo
+
+//find all events
+db.event.find()
+
+//delete all
+db.event.deleteMany({})
+
+// Update a market
+db.event.updateOne(
+    {
+      "Markets.marketId":"986"},
+      {"$set": {"Markets.$[elem].name" : "replaced"}
+      },
+      {"arrayFilters":[{"elem.marketId":"986"}]}
+)
+
+
+//Update name in outcome array
+db.event.update(
+  {
+    "eventId":"123",
+    "Markets": {
+      "$elemMatch": {
+        "marketId": "986","Outcomes.outcomeId": "555"
+      }
+    }
+  },
+  {
+    "$set": { "Markets.$[market].Outcomes.$[outcome].name": "outcometest1_replaced"}
+  },
+  {
+    "arrayFilters": [{"market.marketId": "986" },{ "outcome.outcomeId": "555"}]
+  }
+)
+
+{
+
+4: UpdateOptions: FindOneAndUpdateOptions{arrayFilters=[Document{
+{marketArray.marketId=89b2c294-911e-48da-bb4f-ab35e29bbd13}},
+Document{{outcomeArray.outcomeId=deeb2f57-8367-41f6-a32d-59553e685fb9}}]}
+
+//Update name in outcome array without eventId - THIS WORKS!!!
+db.event.update(
+  {
+    "Markets": {
+      "$elemMatch": {
+        "marketId": "986","Outcomes.outcomeId": "555"
+      }
+    }
+  },
+  {
+    "$set": { "Markets.$[market].Outcomes.$[outcome].name": "outcometest1_replaced3"}
+  },
+  {
+    "arrayFilters": [{"market.marketId": "986" },{ "outcome.outcomeId": "555"}]
+  }
+)
+
+$set=Document{Markets.$[marketArray].Outcomes.$[outcomeArray]={
+  "marketId": "89b2c294-911e-48da-bb4f-ab35e29bbd13",
+  "outcomeId": "deeb2f57-8367-41f6-a32d-59553e685fb9",
+  "name": "No",
+  "price": "10/3",
+  "displayed": false,
+  "suspended": false
+}}}
+
+//Update name in outcome array without eventId - This will replace the object in the array
+db.event.update(
+  {
+    "Markets": {
+      "$elemMatch": {
+        "marketId": "986","Outcomes.outcomeId": "555"
+      }
+    }
+  },
+  {
+    "$set": { "Markets.$[market].Outcomes.$[outcome]":{"name":"outcometest1_replaced4"}}
+  },
+  {
+    "arrayFilters": [{"market.marketId": "986" },{ "outcome.outcomeId": "555"}]
+  }
+)
+

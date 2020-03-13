@@ -1,0 +1,6 @@
+package consumer
+
+class MongoQueries {
+
+
+}
