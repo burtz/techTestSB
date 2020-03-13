@@ -19,10 +19,14 @@ class MongoWriter(
     private val db: MongoDatabase = mongoClient.getDatabase(databaseName)
     private val collection: MongoCollection<Document> = db.getCollection(collectionName)
 
+
+
     fun createWrite(fullPacket: FullPacket) {
         try {
+            val mongoQuery : MongoQueries = MongoQueries(fullPacket)
             if (fullPacket.headerPacket.type == "event") {
                 collection.insertOne(fullPacket.messagePacket.mongoCreateSetDoc())
+                //collection.insertOne(mongoQuery.createSetDoc())
                 //println(fullPacket.messagePacket.mongoCreateSetDoc())
                 println("-----------------------------------------------------------------")
             } else {
